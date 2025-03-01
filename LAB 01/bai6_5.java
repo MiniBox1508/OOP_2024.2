@@ -1,4 +1,3 @@
-package Ex6_5;
 import java.util.Scanner;
 import java.util.Arrays;
 public class Ex6_5 {

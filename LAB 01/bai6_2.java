@@ -1,9 +1,5 @@
-package Ex6_2;
-
 import java.util.Scanner;
-
 public class Ex6_2{
-
 	public static void main(String[] args) {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("What's your name?");
@@ -12,6 +8,5 @@ public class Ex6_2{
         int iAge = keyboard.nextInt();
         System.out.println("How tall are you (m)?");
         double dHeight = keyboard.nextDouble();
-        System.out.println("Mrs/Ms." + strName + ", " + iAge + " years old. " + "Your height is " + dHeight);
-    }
+        System.out.println("Mrs/Ms." + strName + ", " + iAge + " years old. " + "Your height is " + dHeight);}
 }

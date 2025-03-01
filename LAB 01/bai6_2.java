@@ -1,8 +1,8 @@
-package bai6_2;
+package Ex6_2;
 
 import java.util.Scanner;
 
-public class main{
+public class Ex6_2{
 
 	public static void main(String[] args) {
         Scanner keyboard = new Scanner(System.in);

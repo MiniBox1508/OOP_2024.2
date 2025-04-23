@@ -33,7 +33,6 @@ public class CompactDisc extends Disc implements Playable {
         }
     }
 
-    @Override
     public int getLength() {
         int totalLength = 0;
         for (Track track : tracks) {
@@ -42,7 +41,6 @@ public class CompactDisc extends Disc implements Playable {
         return totalLength;
     }
 
-    @Override
     public void play() {
         if (getLength() <= 0) {
             System.out.println("Cannot play CD: " + getTitle() + " (invalid length)");
@@ -55,12 +53,10 @@ public class CompactDisc extends Disc implements Playable {
         }
     }
 
-    @Override
     public boolean isMatch(String title) {
         return getTitle().toLowerCase().contains(title.toLowerCase());
     }
 
-    @Override
     public String toString() {
         return String.format("CD - %s - %s - %s - %s: %.2f $",
                 getTitle(), getCategory() != null ? getCategory() : "Unknown",

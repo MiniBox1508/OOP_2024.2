@@ -7,7 +7,6 @@ public class ConcatenationInLoops {
         Random r = new Random(123);
         long start;
 
-        // String concatenation
         start = System.currentTimeMillis();
         String s = "";
         for (int i = 0; i < 65536; i++) {
@@ -15,7 +14,6 @@ public class ConcatenationInLoops {
         }
         System.out.println("String time: " + (System.currentTimeMillis() - start) + " ms");
 
-        // StringBuilder
         r = new Random(123);
         start = System.currentTimeMillis();
         StringBuilder sb = new StringBuilder();
@@ -25,7 +23,6 @@ public class ConcatenationInLoops {
         s = sb.toString();
         System.out.println("StringBuilder time: " + (System.currentTimeMillis() - start) + " ms");
 
-        // StringBuffer
         r = new Random(123);
         start = System.currentTimeMillis();
         StringBuffer sbf = new StringBuffer();

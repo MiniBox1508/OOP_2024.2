@@ -17,12 +17,10 @@ public class DigitalVideoDisc extends Disc implements Playable {
         super(title, category, director, length, cost);
     }
 
-    @Override
     public boolean isMatch(String title) {
         return getTitle().toLowerCase().contains(title.toLowerCase());
     }
 
-    @Override
     public void play() {
         if (getLength() <= 0) {
             System.out.println("Cannot play DVD: " + getTitle() + " (invalid length)");
@@ -32,7 +30,6 @@ public class DigitalVideoDisc extends Disc implements Playable {
         }
     }
 
-    @Override
     public String toString() {
         return String.format("DVD - %s - %s - %s - %d: %.2f $",
                 getTitle(), getCategory() != null ? getCategory() : "Unknown",

@@ -17,7 +17,6 @@ public class Track implements Playable {
         return length;
     }
 
-    @Override
     public void play() {
         if (length <= 0) {
             System.out.println("Cannot play track: " + title + " (invalid length)");
@@ -27,7 +26,6 @@ public class Track implements Playable {
         }
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (!(obj instanceof Track)) return false;

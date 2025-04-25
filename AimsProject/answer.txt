@@ -1,0 +1,16 @@
+Question: Alternatively, to compare items in the cart, instead of using the Comparator class I have mentioned, you can use the Comparable interface1 and override the compareTo()method. You can
+refer to the Java docs to see the information of this interface. 
+Suppose we are taking this Comparable interface approach.
+- What class should implement the Comparable interface?
+- In those classes, how should you implement the compareTo()method to reflect the ordering that we want?
+- Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this Comparable interface approach?
+- Suppose the DVDs have a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this?
+
+Answer:
+- Lớp Media nên triển khai giao diện Comparable<Media>
+- Nên sắp xếp các mục trong giỏ hàng theo tiêu đề (title) trước, sau đó theo giá (cost) (tăng dần)
+- Không thể có hai quy tắc sắp xếp khác nhau chỉ bằng cách sử dụng giao diện Comparable một cách trực tiếp
+- Giải pháp:
+  + Giữ phương thức compareTo() trong Media như hiện tại (theo tiêu đề rồi giá) để đảm bảo tính nhất quán cho các loại phương tiện khác.
+  + Ghi đè phương thức compareTo() trong DigitalVideoDisc để áp dụng quy tắc sắp xếp riêng: tiêu đề, độ dài giảm dần, giá.
+  + Cập nhật Cart để xử lý trường hợp đặc biệt khi sắp xếp danh sách chứa các DigitalVideoDisc

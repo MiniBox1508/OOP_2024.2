@@ -1,0 +1,27 @@
+1. So sánh các container cấp cao trong Swing và AWT:
+   - Trong AWT, container cấp cao chính là Frame, được sử dụng làm cửa sổ chính của ứng dụng.
+   - Trong Swing, container cấp cao chính là JFrame, tương tự Frame nhưng là một thành phần nhẹ (lightweight) và được thiết kế để tích hợp với content pane. Swing cũng có JDialog và JApplet cho các cửa sổ phụ và applet.
+
+2. So sánh tên lớp của các thành phần trong AWT và Swing:
+   - Các thành phần trong AWT có tên như Label, TextField, Button.
+   - Trong Swing, các thành phần tương ứng có tiền tố "J", ví dụ: JLabel, JTextField, JButton. Các lớp Swing là phiên bản cải tiến, nhẹ hơn và hỗ trợ thêm tính năng như giao diện tùy chỉnh.
+
+3. So sánh cách xử lý sự kiện của ứng dụng Swing và AWT:
+   - Cả Swing và AWT đều sử dụng mô hình xử lý sự kiện dựa trên ActionListener và các interface tương tự.
+   - Trong Swing, việc xử lý sự kiện tương tự AWT nhưng linh hoạt hơn nhờ các thành phần nhẹ và khả năng tích hợp với content pane. Ví dụ, trong bài tập SwingAccumulator, sự kiện được gắn vào JTextField giống như TextField trong AWTAccumulator.
+
+4. So sánh giao diện của ứng dụng Swing và AWT:
+   - Ứng dụng AWT có giao diện phụ thuộc vào hệ điều hành (native look-and-feel), trông khác nhau trên các nền tảng (Windows, macOS, Linux).
+   - Ứng dụng Swing có giao diện đồng nhất (Java look-and-feel) hoặc có thể tùy chỉnh để giống giao diện hệ điều hành. Ví dụ, SwingAccumulator trông hiện đại hơn AWTAccumulator nhờ các thành phần như JLabel và JTextField.
+
+5. Mô tả cách hoàn thiện lớp ButtonListener trong bài tập NumberGrid:
+   - Lớp ButtonListener xử lý ba trường hợp:
+     - Khi nhấn nút số (0-9), thêm số vào cuối nội dung của JTextField (tfDisplay).
+     - Khi nhấn nút "DEL", xóa ký tự cuối cùng trong tfDisplay nếu không rỗng.
+     - Khi nhấn nút "C", xóa toàn bộ nội dung của tfDisplay.
+   - Sử dụng e.getActionCommand() để xác định nút được nhấn và cập nhật tfDisplay tương ứng.
+
+6. Giải thích cách tích hợp các lớp GUI mới với dự án AIMS:
+   - Các lớp GUI (StoreManagerScreen, MediaStore, AddItemToStoreScreen, v.v.) được đặt trong gói hust.soict.itep.aims.screen.manager.
+   - StoreManagerScreen tích hợp với lớp Store để lấy danh sách media và hiển thị trong GridLayout.
+   - Các màn hình thêm media (AddBookToStoreScreen, AddCompactDiscToStoreScreen, AddDigitalVideoDiscToStoreScreen) sử dụng kế thừa từ AddItemToStoreScreen để chia sẻ menu bar và giao diện chung, đồng thời gọi phương thức addMedia() của Store để thêm media mới.

@@ -1,0 +1,49 @@
+```java
+package hust.soict.itep.aims.screen.customer;
+
+import hust.soict.itep.aims.cart.Cart;
+import hust.soict.itep.aims.media.DigitalVideoDisc;
+import hust.soict.itep.aims.store.Store;
+import hust.soict.itep.aims.screen.customer.controller.ViewStoreController;
+import hust.soict.itep.aims.exception.PlayerException;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class CustomerMain extends Application {
+    private static Store store = new Store();
+    private static Cart cart = new Cart();
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/hust/soict/itep/aims/screen/customer/view/Store.fxml"));
+        fxmlLoader.setController(new ViewStoreController(store, cart));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("AIMS Customer");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void main(String[] args) {
+        // Thêm dữ liệu mẫu
+        DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
+        DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 87, 24.95f);
+        DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladdin", "Animation", null, 0, 18.99f);
+        store.addMedia(dvd1);
+        store.addMedia(dvd2);
+        store.addMedia(dvd3);
+
+        try {
+            // Thử phát một DVD để kiểm tra ngoại lệ
+            dvd3.play();
+        } catch (PlayerException e) {
+            System.err.println("Caught in main: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        launch(args);
+    }
+}
+```

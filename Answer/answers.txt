@@ -1,0 +1,85 @@
+Câu 1: What should we do to draw a dot when the mouse is clicked?
+Answer: Để vẽ một chấm khi nhấp chuột, chúng ta cần thêm sự kiện 'onMousePressed' vào phần tử 'Pane' trong tệp 'Painter.fxml'
+
+Câu 2: How can we add an eraser function to the Painter application? 
+Answer: Để thêm chức năng tẩy (eraser) vào ứng dụng Painter, chúng ta cần:
+1. Thêm một 'TitledPane' chứa hai 'RadioButton' (Pen và Eraser) vào 'VBox' trong 'Painter.fxml'.
+2. Cập nhật 'PainterController.java' để kiểm tra trạng thái của 'RadioButton'. Khi chọn Eraser, vẽ hình tròn có màu trắng
+
+Câu 3: What are the main functionalities that the AIMS customer application should support? 
+Answer: Ứng dụng AIMS cho khách hàng cần hỗ trợ các chức năng chính:
+- Xem cửa hàng: Khách hàng có thể xem tất cả media, phát media nếu là DVD/CD, và thêm media vào giỏ hàng.
+- Quản lý giỏ hàng: Khách hàng có thể xem giỏ hàng, xem tổng chi phí, lọc media (theo ID hoặc tiêu đề), phát DVD/CD, xóa media khỏi giỏ hàng, và đặt hàng.
+
+Câu 4: How should we design the Store screen to display media items? 
+Answer: Để thiết kế màn hình Store, chúng ta sử dụng 'Store.fxml' với:
+1. Một 'VBox' làm gốc, chứa:
+   - Một 'HBox' cho tiêu đề ("AIMS") và nút "View Cart".
+   - Một 'ScrollPane' chứa 'GridPane' để hiển thị các media.
+2. Mỗi media được hiển thị bằng 'Item.fxml', với thông tin tiêu đề, chi phí, nút "Add to Cart", và nút "Play" (nếu media là DVD/CD).
+3. Trong 'ViewStoreController.java', tải động 'Item.fxml' vào 'GridPane', sắp xếp media theo lưới 3 cột.
+
+Câu 5: What components should be included in the Cart screen? 
+Answer: Màn hình Cart ('Cart.fxml') cần bao gồm các thành phần:
+1. Một 'VBox' làm gốc, chứa:
+   - Một 'HBox' với tiêu đề ("AIMS") và nút "View Store".
+   - Một 'TableView' để hiển thị danh sách media (các cột: ID, Tiêu đề, Danh mục, Chi phí).
+   - Một 'HBox' chứa các nút "Play", "Remove", "Place Order".
+   - Một 'HBox' hiển thị tổng chi phí ("Total Cost").
+   - Một 'HBox' để lọc media với 'TextField' và hai 'RadioButton' (By ID, By Title).
+
+Câu 6: How can we enable switching between the Store and Cart screens?
+Answer: Để chuyển đổi giữa màn hình Store và Cart:
+1. Trong 'ViewStoreController.java', thêm phương thức 'btnViewCartPressed':
+   - Tải 'Cart.fxml' và tạo 'CartController'.
+   - Đặt scene mới cho 'Stage' hiện tại.
+2. Trong 'CartController.java', thêm phương thức 'btnViewStorePressed':
+   - Tải 'Store.fxml' và tạo 'ViewStoreController'.
+   - Đặt scene mới cho 'Stage' hiện tại.
+Cả hai phương thức sử dụng 'FXMLLoader' để tải giao diện và chuyển đổi scene.
+
+Câu 7: What runtime exceptions should we check for in the AIMS project?
+Answer: Trong dự án AIMS, chúng ta cần kiểm tra các ngoại lệ runtime sau:
+- 'IllegalStateException': Trong 'Cart', khi số lượng media vượt quá giới hạn 'MAX_NUMBERS_ORDERED'.
+- 'NullPointerException': Khi so sánh media trong 'compareTo()' (đã xử lý bằng kiểm tra null).
+- Các ngoại lệ liên quan đến JavaFX (như 'IOException') khi tải FXML, được xử lý bằng 'try-catch'.
+
+Câu 8: What is the purpose of creating a custom exception class like PlayerException? 
+Answer: Mục đích của việc tạo lớp ngoại lệ tùy chỉnh như 'PlayerException' là để xử lý các lỗi cụ thể liên quan đến việc phát media (như DVD hoặc CD) một cách có tổ chức. Lớp này cho phép định nghĩa thông điệp lỗi riêng (ví dụ: độ dài không hợp lệ) và được ném khi phương thức 'play()' gặp vấn đề, giúp chương trình kiểm soát ngoại lệ một cách rõ ràng và tái sử dụng trong các lớp khác nhau như 'DigitalVideoDisc', 'CompactDisc', và 'Track'.
+
+Câu 9: How should we define the PlayerException class?
+Answer: Lớp 'PlayerException' cần được định nghĩa trong package 'hust.soict.itep.aims.exception', kế thừa từ 'Exception', và có một constructor nhận thông điệp lỗi
+
+
+Câu 10: How should we integrate PlayerException into the play() method of DigitalVideoDisc? 
+Answer: Để tích hợp 'PlayerException' vào phương thức 'play()' của 'DigitalVideoDisc', chúng ta cần:
+1. Thêm 'throws PlayerException' vào chữ ký phương thức 'play()'.
+2. Kiểm tra điều kiện (ví dụ: độ dài 'length' phải lớn hơn 0), nếu không thỏa mãn thì ném ngoại lệ với thông điệp phù hợp
+
+Câu 11: How should we handle PlayerException in the Aims class (or CustomerMain in this case)?
+Answer: Trong 'CustomerMain.java', chúng ta xử lý 'PlayerException' bằng cách:
+1. Gọi phương thức 'play()' trên một DVD mẫu trong 'main'.
+2. Sử dụng 'try-catch' để bắt và xử lý ngoại lệ
+Điều này đảm bảo chương trình không bị crash khi phát media có độ dài không hợp lệ.
+
+Câu 12: Why do we need to update the equals() and compareTo() methods in the Media class?
+Answer: Chúng ta cần cập nhật phương thức 'equals()' và 'compareTo()' trong lớp 'Media' để:
+- 'equals()': Đảm bảo hai đối tượng 'Media' được coi là bằng nhau dựa trên tiêu đề ('title') và chi phí ('cost'), giúp tránh trùng lặp khi thêm vào 'Cart' hoặc 'Store'.
+- 'compareTo()': Cho phép so sánh hai đối tượng 'Media' (dựa trên tiêu đề trước, sau đó là chi phí) để sắp xếp danh sách media, ví dụ khi lọc hoặc hiển thị trong giao diện JavaFX.
+
+Câu 13: What are the key points to learn from the provided exception-handling links? 
+Answer: Các điểm chính cần học từ các liên kết về xử lý ngoại lệ bao gồm:
+- Hiểu cơ bản về ngoại lệ (exception) và cách sử dụng 'try-catch' để kiểm soát lỗi.
+- Sử dụng ngoại lệ tùy chỉnh để xử lý các tình huống cụ thể (như 'PlayerException').
+- Thực hành các nguyên tắc cơ bản như ném ngoại lệ phù hợp, xử lý ngoại lệ ở mức cao hơn, và tránh lạm dụng ngoại lệ.
+
+Câu 14: How should we draw the exception tree diagram for the custom exceptions in the AIMS project? 
+Answer: Để vẽ sơ đồ cây ngoại lệ cho các ngoại lệ tùy chỉnh trong dự án AIMS:
+1. Xác định lớp ngoại lệ chính: 'PlayerException' (đã tạo trong package 'hust.soict.itep.aims.exception').
+2. Vẽ 'PlayerException' như một nút, kế thừa từ 'java.lang.Exception' (sử dụng mũi tên hướng lên với nhãn "extends").
+3. Thêm các ngoại lệ khác nếu có (ví dụ: 'IllegalStateException' từ 'Cart' không cần vẽ vì nó là ngoại lệ có sẵn, nhưng có thể ghi chú).
+4. Sử dụng công cụ như Astah hoặc draw.io, xuất thành PNG và lưu vào thư mục 'design'.
+   - Ví dụ: Nút 'Exception' → Nút 'PlayerException'.
+
+Câu 15: Where should the exception tree diagram be saved? 
+Answer: Sơ đồ cây ngoại lệ cần được lưu trong thư mục 'design' trong repository của dự án.
